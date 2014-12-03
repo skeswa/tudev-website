@@ -2,7 +2,7 @@
 @import "../variables";
 @import "../mixins";
 
-#public #content #login {
+#public #content #register {
     .mixin-page;
 
     // Hack that accomplishes vertical centering for the card
@@ -16,7 +16,7 @@
         .mixin-valign-object;
 
         text-align: left;
-        width: 500px;
+        width: 700px;
 
         .wrapper {
             .mixin-card-wrapper;
@@ -39,19 +39,45 @@
             .form {
                 margin-top: 10px;
                 margin-bottom: 20px;
+                height: 400px;
 
-                .label {
-                    .mixin-form-label;
-                }
+                .field-group {
+                    .mixin-form-field-group;
 
-                .textbox {
-                    .mixin-form-textbox;
+                    &.full {
+                        width: 100%;
+                    }
 
-                    &:focus {
-                        .mixin-form-textbox-focused;
+                    .label {
+                        .mixin-form-label;
+                    }
+
+                    input[type="text"] {
+                        .mixin-form-textbox;
+
+                        margin-bottom: 0px;
+
+                        &:focus {
+                            .mixin-form-textbox-focused;
+                        }
+                    }
+
+                    textarea {
+                        .mixin-form-textbox;
+
+                        height: auto;
+                        margin-bottom: 0px;
+                        padding: 12px;
+                        font-family: 'Roboto', sans-serif;
+                        resize: none;
+
+                        &:focus {
+                            .mixin-form-textbox-focused;
+
+                            padding: 10px;
+                        }
                     }
                 }
-
             }
 
             .flash {
@@ -64,35 +90,19 @@
                 }
             }
 
-            p {
-                .mixin-paragraph;
-
-                font-weight: 400;
-                letter-spacing: 0.5px;
-                text-transform: uppercase;
-                text-align: center;
-
-                .link {
-                    color: @color-blue;
-                    cursor: pointer;
-                    letter-spacing: 0.75px;
-                    font-weight: 700;
-                }
-            }
-
-            #login-button {
+            #register-button {
                 .mixin-button;
 
-                background-color: @color-primary;
+                background-color: @color-blue;
 
                 &:hover {
-                    background-color: lighten(@color-primary, 5%);
+                    background-color: lighten(@color-blue, 5%);
                 }
 
                 &:active {
                     text-shadow: 0px 0px 6px rgba(0, 0, 0, 0.4);
                     box-shadow: 0px 0px 6px rgba(0, 0, 0, 0.6) inset;
-                    background-color: darken(@color-primary, 5%);
+                    background-color: darken(@color-blue, 5%);
                 }
 
                 &[disabled] {

@@ -11,7 +11,7 @@ module.exports = {
     details: function() {
         if (!util.env.loggingIsVerbose) return;
         var args = sanitizeArgs(arguments);
-        args.unshift(((new Date().toISOString()) + ' details:\t').gray);
+        args.unshift(((new Date().toISOString()) + ' details:\t').white);
         console.log.apply(this, args);
     },
     debug: function() {

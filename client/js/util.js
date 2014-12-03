@@ -6,6 +6,43 @@ module.exports = {
             }
         }
     },
+    object: {
+        lengthOf: function(obj) {
+            var size = 0, key;
+            for (key in obj) {
+                if (obj.hasOwnProperty(key)) size++;
+            }
+            return size;
+        }
+    },
+    events: {
+        once: function (el, type, callback) {
+            var typeArray = type.split(' ');
+
+            for (var i = typeArray.length - 1; i >= 0; i--) {
+                el.addEventListener(typeArray[i], function(e) {
+                    e.target.removeEventListener(e.type, arguments.callee);
+                    return callback(e);
+                });
+            }
+        },
+        on: function(el, type, callback, capture) {
+            el.addEventListener(type, callback, capture || false);
+        },
+        off: function(el, type, callback, capture) {
+            el.removeEventListener(type, callback, capture || false);
+        }
+    },
+    dom: {
+        isDescendant: function(parent, child) {
+            var node = child.parentNode;
+            while (node != null) {
+                if (node == parent) return true;
+                node = node.parentNode;
+            }
+            return false;
+        }
+    },
     assets: {
         waitForImages: function(images, done) {
             var img, count = 0, callback = function() {
