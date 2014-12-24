@@ -21,13 +21,15 @@ var Register = React.createClass({
                 years[year + i] = (year + i) + '';
             }
             return years;
-        })()
+        })(),
+        partCount: 3
     },
     getInitialState: function() {
         return {
             toastMessage: undefined,
             userName: '',
             password: '',
+            part: 0,
             waiting: false
         };
     },
@@ -59,7 +61,7 @@ var Register = React.createClass({
     },
     render: function() {
         return (
-            <div id="register">
+            <div id="register" className="page">
                 <div className="card">
                     <div className="wrapper">
                         <h1>
@@ -67,7 +69,7 @@ var Register = React.createClass({
                             <i className={'fa fa-refresh fa-spin' + (this.state.waiting ? '' : ' hidden')}></i>
                         </h1>
                         <div className="divider"/>
-                        <div className="form">
+                        <div className="form" style={{display: (this.state.part === 0 ? '' : ' hidden')}}>
                             <div className="field-group">
                                 <div className="label">First Name</div>
                                 <input
@@ -124,15 +126,16 @@ var Register = React.createClass({
                                     onChange={this.generateTextListener('bio')}
                                     disabled={this.state.waiting} />
                             </div>
-
-                            <div className="label">Password</div>
-                            <input type="password" className="textbox" ref="password" id="password-textbox" value={this.state.password} onChange={this.onPasswordUpdated} onKeyDown={this.onPasswordKeyPress} disabled={this.state.waiting}/>
                         </div>
                         <div className={'flash' + (this.state.toastMessage ? ' visible' : '')}>
                             {this.state.toastMessage}
                         </div>
                         <div className="divider"/>
-                        <button id="register-button" onClick={this.onSubmitClicked} disabled={this.state.waiting}>Register</button>
+                        <button
+                            id="register-button"
+                            className={(this.state.part === (this.constants.partCount - 1)) ? 'finish' : ''}
+                            onClick={this.onSubmitClicked}
+                            disabled={this.state.waiting}>{(this.state.part === (this.constants.partCount - 1)) ? 'Register' : 'Continue'}</button>
                     </div>
                 </div>
             </div>

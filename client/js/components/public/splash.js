@@ -69,7 +69,7 @@ var Splash = React.createClass({
     },
     render: function() {
         return (
-            <div id="splash" className={this.state.splashLoaded ? '' : 'hidden'}>
+            <div id="splash" className={this.state.splashLoaded ? 'page' : 'page hidden'}>
                 <div id="blurb" className={this.state.blurbVisible ? '' : 'loading'}>
                     <div className="logo"/>
                     <h1>We&#39;re <span>Temple Dev</span></h1>

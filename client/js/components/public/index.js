@@ -1,5 +1,7 @@
 /** @jsx React.DOM */
-var React           = require('react');
+var React           = require('react'),
+    TransitionGroup = require('react/lib/ReactCSSTransitionGroup'),
+    Router          = require('react-router');
 
 var Actions         = require('../../actions'),
     AuthService     = require('../../services/auth'),
@@ -7,7 +9,12 @@ var Actions         = require('../../actions'),
     Header          = require('./header'),
     Footer          = require('./footer');
 
+var RouteHandler    = Router.RouteHandler;
+
 var PublicPageWrapper = React.createClass({
+    mixins: [
+        Router.State
+    ],
     componentDidMount: function() {
         // Get the session immediately
         AuthService.getSession(function(err, res) {
@@ -20,11 +27,16 @@ var PublicPageWrapper = React.createClass({
         });
     },
     render: function() {
+        // Get the route name
+        var routeName = this.getRoutes().reverse()[0].name || 'splash';
+        // Return the public page DOM
         return (
             <div id="public">
                 <Header/>
                 <div id="content">
-                    <this.props.activeRouteHandler/>
+                    <TransitionGroup transitionName="transition-carousel">
+                        <RouteHandler component="div" key={routeName}/>
+                    </TransitionGroup>
                 </div>
                 <Footer/>
             </div>

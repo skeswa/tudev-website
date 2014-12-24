@@ -9,7 +9,7 @@ var Team = React.createClass({
     },
     render: function() {
         return (
-            <div></div>
+            <div className="page"></div>
         );
     }
 });

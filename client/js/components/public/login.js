@@ -91,7 +91,7 @@ var Login = React.createClass({
     },
     render: function() {
         return (
-            <div id="login">
+            <div id="login" className="page">
                 <div className="card">
                     <div className="wrapper">
                         <h1>

@@ -9,7 +9,7 @@ var About = React.createClass({
     },
     render: function() {
         return (
-            <div></div>
+            <div id="about" className="page"></div>
         );
     }
 });

@@ -1,0 +1,20 @@
+#public #content .page {
+    &.transition-carousel-enter {
+        opacity: 0;
+        transform: scale(1.25);
+        transition: transform 0.5s, opacity 0.5s;
+    }
+    &.transition-carousel-enter.transition-carousel-enter-active {
+        opacity: 1;
+        transform: scale(1);
+    }
+    &.transition-carousel-leave {
+        opacity: 1;
+        transform: scale(1);
+        transition: transform 0.5s, opacity 0.5s;
+    }
+    &.transition-carousel-leave.transition-carousel-leave-active {
+        opacity: 0;
+        transform: scale(0.75);
+    }
+}

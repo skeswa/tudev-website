@@ -2,9 +2,7 @@
 @import "../variables";
 @import "../mixins";
 
-#public #content #register {
-    .mixin-page;
-
+#register.page {
     // Hack that accomplishes vertical centering for the card
     // Explained here: http://css-tricks.com/centering-in-the-unknown/
     &:before {
@@ -39,7 +37,6 @@
             .form {
                 margin-top: 10px;
                 margin-bottom: 20px;
-                height: 400px;
 
                 .field-group {
                     .mixin-form-field-group;

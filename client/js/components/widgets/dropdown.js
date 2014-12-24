@@ -33,10 +33,11 @@ var Dropdown = React.createClass({
         Util.events.off(document, 'click', this.onDocumentClicked);
     },
     onDocumentClicked: function(e) {
-        var el = this.getDOMNode();
+        // This can only happen if the component is mounted
+        if (!this.isMounted()) return;
         // Check if the target is inside the current component
-        if (this.isMounted() &&
-            e.target != el &&
+        var el = this.getDOMNode();
+        if (e.target != el &&
             !Util.dom.isDescendant(el, e.target)) {
             this.hideMenu();
         }

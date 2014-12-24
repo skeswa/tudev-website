@@ -3,8 +3,8 @@ var React   = require('react'),
     Router  = require('react-router');
 
 // React-router variables
-var Routes          = Router.Routes,
-    Route           = Router.Route,
+var Route           = Router.Route,
+    RouteHandler    = Router.RouteHandler,
     DefaultRoute    = Router.DefaultRoute,
     NotFoundRoute   = Router.NotFoundRoute;
 
@@ -28,7 +28,7 @@ var Member      = require('./components/member'),
 
 // Routes representing the frontend
 var sitemap = (
-    <Routes location="history">
+    <Route handler={RouteHandler}>
         <Route name="public" path="/" handler={Public}>
             <Route name="blog" handler={Blog}/>
             <Route name="team" handler={Team}/>
@@ -45,8 +45,10 @@ var sitemap = (
             <DefaultRoute handler={Dashboard}/>
         </Route>
         <NotFoundRoute handler={NotFound}/>
-    </Routes>
+    </Route>
 );
 
 // Bind the routes to the DOM
-React.renderComponent(sitemap, document.body);
+Router.run(sitemap, function (Handler) {
+    React.render(<Handler/>, document.body);
+});
